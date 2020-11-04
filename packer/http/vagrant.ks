@@ -3,7 +3,7 @@ cdrom
 
 lang en_US.UTF-8
 keyboard us
-timezone UTC
+timezone Asia/Almaty
 
 network --onboot yes --bootproto=dhcp --device=eth0 --activate --noipv6
 
@@ -36,9 +36,13 @@ openssh-server
 %post --log=/root/post_install.log
 
 # Add vagrant to sudoers
-cat > /etc/sudoers.d/vagrant << EOF_sudoers_vagrant
-vagrant        ALL=(ALL)       NOPASSWD: ALL
-EOF_sudoers_vagrant
+/usr/sbin/useradd vagrant echo "vagrant" | passwd --stdin vagrant
+sed -i "s/.*requiretty/#Defaults requiretty/" /etc/sudoers
+echo "vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
+chmod 0440 /etc/sudoers.d/vagrant
+#cat > /etc/sudoers.d/vagrant << EOF_sudoers_vagrant
+#vagrant        ALL=(ALL)       NOPASSWD: ALL
+#EOF_sudoers_vagrant
 
 /bin/chmod 0440 /etc/sudoers.d/vagrant
 /bin/sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
