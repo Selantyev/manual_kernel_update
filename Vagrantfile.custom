@@ -1,13 +1,13 @@
 # Describe VMs
 MACHINES = {
-  # VM name "kernel update"
-  :"centos7-1908" => {
+  # VM name "Centos_Selantyev-7-5"
+  :"CentosSelantyev-7-5" => {
               # VM box
-              :box_name => "centos7-1908",
+              :box_name => "Centos_Selantyev-7-5",
               # VM CPU count
               :cpus => 2,
               # VM RAM size (Mb)
-              :memory => 2048,
+              :memory => 3072,
               # networks
               :net => [],
               # forwarded ports
