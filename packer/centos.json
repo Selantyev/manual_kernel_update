@@ -1,8 +1,8 @@
 {
   "variables": {
-    "artifact_description": "CentOS 7.7 with kernel 5.x",
+    "artifact_description": "CentOS 7.7 1908 with kernel 5.9.3",
     "artifact_version": "7.7.1908",
-    "image_name": "centos-7.7"
+    "image_name": "Centos_Selantyev-7.7"
   },
 
   "builders": [
@@ -12,11 +12,11 @@
       "vm_name": "packer-centos-vm",
 
       "boot_wait": "10s",
-      "disk_size": "10240",
+      "disk_size": "30720",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
 
-      "iso_url": "http://mirror.yandex.ru/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso",
+      "iso_url": "file:///F:/Distr/ISO/CentOS-7-x86_64-Minimal-1908.iso",
       "iso_checksum": "9a2c47d97b9975452f7d582264e9fc16d108ed8252ac6816239a3b58cef5c53d",
       "iso_checksum_type": "sha256",
 
@@ -36,7 +36,7 @@
       "output_directory": "builds",
 
       "vboxmanage": [
-        [  "modifyvm",  "{{.Name}}",  "--memory",  "1024" ],
+        [  "modifyvm",  "{{.Name}}",  "--memory",  "3072" ],
         [  "modifyvm",  "{{.Name}}",  "--cpus",  "2" ]
       ],
 
@@ -53,7 +53,7 @@
 
   "post-processors": [
     {
-      "output": "centos-{{user `artifact_version`}}-kernel-5-x86_64-Minimal.box",
+      "output": "Centos_Selantyev-{{user `artifact_version`}}-kernel-5-x86_64-Minimal.box",
       "compression_level": "7",
       "type": "vagrant"
     }
